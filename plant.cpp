@@ -44,6 +44,8 @@ queue<Order*> BacklogQueue;
 queue<Order*> ExpQueue;
 
 int Experiment;
+int rawexperiment;
+float wmup; //needs to be fload and more condition
 int CurrentDay = 1;
 
 int CurrentUrgent = 0;
@@ -87,8 +89,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "please input Backlog Capacity: " << endl;
 	cin >> BacklogCapacity;
 	cout << "please input Experiment Replicate: " << endl;
-	cin >> Experiment;
+	cin >> rawexperiment;
+	cout << "please input warmup period (%):" << endl;
+	cin >> wmup;
 	cout << endl;
+
+	int l;
+	if (wmup<1)
+	{
+		l = wmup*rawexperiment;
+		Experiment = rawexperiment - l;
+	}
+	l = wmup / 100 * rawexperiment;
+	Experiment = rawexperiment - l;
+
 	
 	while (true)
 	{
